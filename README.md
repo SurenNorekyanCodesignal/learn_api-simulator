@@ -174,6 +174,37 @@ curl -X POST http://localhost:3000/message \
   -d '{"message": "Hello from the server!"}'
 ```
 
+## API Simulator verification
+
+### Manual end-to-end check
+
+1. Start local dev servers:
+   ```bash
+   npm run start:dev
+   ```
+2. Open `http://localhost:3000`.
+3. In manual mode, send:
+   - `GET http://localhost:3001/demo-api/health`
+   - `POST http://localhost:3001/demo-api/users` with JSON body `{"name":"Alice"}`
+4. Confirm response tabs show status/body/headers and history contains both requests.
+5. Select guided step `health-check` and verify checks pass.
+6. Confirm `.api-sim-data/events.jsonl` grows and `.api-sim-data/progress.json` updates.
+
+### Automated smoke script
+
+Run:
+
+```bash
+node scripts/smoke-test.mjs
+```
+
+The script verifies demo CRUD endpoints in order:
+- `GET /demo-api/health`
+- `POST /demo-api/users`
+- `GET /demo-api/users`
+- `PATCH /demo-api/users/:id`
+- `DELETE /demo-api/users/:id`
+
 ## CI/CD and Automated Releases
 
 This template includes a GitHub Actions workflow (`.github/workflows/build-release.yml`) that automatically builds and releases your application when you push to the `main` branch.

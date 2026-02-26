@@ -1,0 +1,245 @@
+learn_api-sim/
+├── .github/
+│   └── workflows/
+│       └── build-release.yml
+├── client/
+│   ├── design-system/
+│   │   ├── colors/
+│   │   │   ├── colors.css
+│   │   │   ├── README.md
+│   │   │   └── test.html
+│   │   ├── components/
+│   │   │   ├── boxes/
+│   │   │   │   ├── boxes.css
+│   │   │   │   ├── README.md
+│   │   │   │   └── test.html
+│   │   │   ├── button/
+│   │   │   │   ├── button.css
+│   │   │   │   ├── README.md
+│   │   │   │   └── test.html
+│   │   │   ├── dropdown/
+│   │   │   │   ├── dropdown.css
+│   │   │   │   ├── dropdown.js
+│   │   │   │   ├── README.md
+│   │   │   │   └── test.html
+│   │   │   ├── horizontal-cards/
+│   │   │   │   ├── horizontal-cards.css
+│   │   │   │   ├── horizontal-cards.js
+│   │   │   │   ├── README.md
+│   │   │   │   └── test.html
+│   │   │   ├── icons/
+│   │   │   │   ├── icons.css
+│   │   │   │   ├── README.md
+│   │   │   │   └── test.html
+│   │   │   ├── input/
+│   │   │   │   ├── input.css
+│   │   │   │   ├── README.md
+│   │   │   │   └── test.html
+│   │   │   ├── modal/
+│   │   │   │   ├── help-modal-template.html
+│   │   │   │   ├── modal.css
+│   │   │   │   ├── modal.js
+│   │   │   │   ├── README.md
+│   │   │   │   └── test.html
+│   │   │   ├── numeric-slider/
+│   │   │   │   ├── numeric-slider.css
+│   │   │   │   ├── numeric-slider.js
+│   │   │   │   ├── README.md
+│   │   │   │   └── test.html
+│   │   │   ├── split-panel/
+│   │   │   │   ├── README.md
+│   │   │   │   ├── split-panel.css
+│   │   │   │   ├── split-panel.js
+│   │   │   │   └── test.html
+│   │   │   └── tags/
+│   │   │       ├── README.md
+│   │   │       ├── tags.css
+│   │   │       └── test.html
+│   │   ├── fonts/
+│   │   │   ├── FoundersGrotesk-Light-Italic.woff2
+│   │   │   ├── FoundersGrotesk-Light.woff2
+│   │   │   ├── FoundersGrotesk-Medium-Italic.woff2
+│   │   │   ├── FoundersGrotesk-Medium.woff2
+│   │   │   ├── JetBrainsMono-Medium-Italic.woff2
+│   │   │   ├── JetBrainsMono-Medium.woff2
+│   │   │   ├── WorkSans-Italic-VariableFont_wght.ttf
+│   │   │   └── WorkSans-VariableFont_wght.ttf
+│   │   ├── spacing/
+│   │   │   ├── README.md
+│   │   │   └── spacing.css
+│   │   ├── typography/
+│   │   │   ├── README.md
+│   │   │   ├── test.html
+│   │   │   ├── typography.css
+│   │   │   └── typography.js
+│   │   ├── .git
+│   │   ├── agents.md
+│   │   ├── LICENSE.md
+│   │   ├── llms.txt
+│   │   ├── README.md
+│   │   ├── test-server.js
+│   │   └── test.html
+│   ├── example-app/
+│   │   ├── example-app.css
+│   │   ├── example-app.js
+│   │   ├── help-content.html
+│   │   ├── index.html
+│   │   └── README.md
+│   ├── public/
+│   │   └── config/
+│   │       └── config.json
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── common/
+│   │   │   │   ├── ActivityLog.tsx
+│   │   │   │   └── Tabs.tsx
+│   │   │   ├── history/
+│   │   │   │   └── HistoryPanel.tsx
+│   │   │   ├── layout/
+│   │   │   │   └── SimulatorLayout.tsx
+│   │   │   ├── postman/
+│   │   │   │   ├── workbench/
+│   │   │   │   │   ├── AuthEditor.tsx
+│   │   │   │   │   ├── BodyEditor.tsx
+│   │   │   │   │   ├── EditorTabs.tsx
+│   │   │   │   │   ├── HeadersEditor.tsx
+│   │   │   │   │   ├── KeyValueRowsEditor.tsx
+│   │   │   │   │   ├── ParamsEditor.tsx
+│   │   │   │   │   ├── RequestBar.tsx
+│   │   │   │   │   └── RequestWorkbench.tsx
+│   │   │   │   ├── ActivitySection.tsx
+│   │   │   │   ├── GuidedStepsSection.tsx
+│   │   │   │   ├── PostmanPage.tsx
+│   │   │   │   ├── RequestSection.tsx
+│   │   │   │   ├── ResponsePane.tsx
+│   │   │   │   ├── SectionNav.tsx
+│   │   │   │   └── Sidebar.tsx
+│   │   │   ├── request/
+│   │   │   │   ├── AuthEditor.tsx
+│   │   │   │   ├── BodyEditor.tsx
+│   │   │   │   ├── KeyValueEditor.tsx
+│   │   │   │   └── RequestBuilder.tsx
+│   │   │   ├── response/
+│   │   │   │   └── ResponseViewer.tsx
+│   │   │   └── steps/
+│   │   │       ├── CheckList.tsx
+│   │   │       └── StepList.tsx
+│   │   ├── config/
+│   │   ├── data/
+│   │   ├── hooks/
+│   │   │   ├── useConfig.ts
+│   │   │   ├── useProgress.ts
+│   │   │   ├── useRequestHistory.ts
+│   │   │   └── useSession.ts
+│   │   ├── lib/
+│   │   │   ├── checks.ts
+│   │   │   ├── formatters.ts
+│   │   │   ├── id.ts
+│   │   │   ├── requestDraft.ts
+│   │   │   ├── safeJson.ts
+│   │   │   ├── urlDraft.ts
+│   │   │   └── validators.ts
+│   │   ├── services/
+│   │   │   ├── httpClient.ts
+│   │   │   └── loggingApi.ts
+│   │   ├── state/
+│   │   │   └── store.tsx
+│   │   ├── styles/
+│   │   │   └── tailwind.css
+│   │   ├── types/
+│   │   │   ├── config.ts
+│   │   │   ├── events.ts
+│   │   │   ├── http.ts
+│   │   │   └── progress.ts
+│   │   ├── App.tsx
+│   │   └── main.tsx
+│   ├── api-sim.css
+│   ├── app.js
+│   ├── bespoke-template.css
+│   ├── help-content.html
+│   ├── index.html
+│   └── tsconfig.json
+├── dump-needed/
+│   ├── client/
+│   │   ├── design-system/
+│   │   │   └── agents.md
+│   │   ├── public/
+│   │   │   └── config/
+│   │   │       └── config.json
+│   │   ├── src/
+│   │   │   ├── components/
+│   │   │   │   ├── common/
+│   │   │   │   │   ├── ActivityLog.tsx
+│   │   │   │   │   └── Tabs.tsx
+│   │   │   │   ├── history/
+│   │   │   │   │   └── HistoryPanel.tsx
+│   │   │   │   ├── layout/
+│   │   │   │   │   └── SimulatorLayout.tsx
+│   │   │   │   ├── request/
+│   │   │   │   │   ├── AuthEditor.tsx
+│   │   │   │   │   ├── BodyEditor.tsx
+│   │   │   │   │   ├── KeyValueEditor.tsx
+│   │   │   │   │   └── RequestBuilder.tsx
+│   │   │   │   ├── response/
+│   │   │   │   │   └── ResponseViewer.tsx
+│   │   │   │   └── steps/
+│   │   │   │       ├── CheckList.tsx
+│   │   │   │       └── StepList.tsx
+│   │   │   ├── hooks/
+│   │   │   │   ├── useConfig.ts
+│   │   │   │   ├── useProgress.ts
+│   │   │   │   ├── useRequestHistory.ts
+│   │   │   │   └── useSession.ts
+│   │   │   ├── lib/
+│   │   │   │   ├── checks.ts
+│   │   │   │   ├── formatters.ts
+│   │   │   │   ├── id.ts
+│   │   │   │   ├── requestDraft.ts
+│   │   │   │   ├── safeJson.ts
+│   │   │   │   └── validators.ts
+│   │   │   ├── services/
+│   │   │   │   ├── httpClient.ts
+│   │   │   │   └── loggingApi.ts
+│   │   │   ├── state/
+│   │   │   │   └── store.tsx
+│   │   │   ├── styles/
+│   │   │   │   └── tailwind.css
+│   │   │   ├── types/
+│   │   │   │   ├── config.ts
+│   │   │   │   ├── events.ts
+│   │   │   │   ├── http.ts
+│   │   │   │   └── progress.ts
+│   │   │   ├── App.tsx
+│   │   │   └── main.tsx
+│   │   ├── api-sim.css
+│   │   ├── app.js
+│   │   ├── help-content.html
+│   │   ├── index.html
+│   │   └── tsconfig.json
+│   ├── AGENTS.md
+│   ├── BESPOKE-TEMPLATE.md
+│   ├── package.json
+│   ├── postcss.config.js
+│   ├── server.js
+│   ├── tailwind.config.js
+│   ├── tsconfig.json
+│   └── vite.config.js
+├── scripts/
+│   ├── dump-needed.mjs
+│   ├── print-tree.mjs
+│   └── smoke-test.mjs
+├── .gitignore
+├── .gitmodules
+├── AGENTS.md
+├── BESPOKE-TEMPLATE.md
+├── dumpProject.js
+├── LICENSE
+├── package-lock.json
+├── package.json
+├── postcss.config.js
+├── project-tree.txt
+├── README.md
+├── server.js
+├── tailwind.config.js
+├── tsconfig.json
+└── vite.config.js

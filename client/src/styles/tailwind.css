@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom utility helpers */
+.bespoke .tw-card {
+  background: var(--Colors-Backgrounds-Main-Default);
+  border-radius: var(--UI-Radius-radius-m);
+  border: 1px solid var(--Colors-Stroke-Default);
+}
