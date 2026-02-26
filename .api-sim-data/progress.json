@@ -1,0 +1,15 @@
+{
+  "taskId": "demo-api-sim",
+  "sessionId": "1ab8dcb2-ac7c-4159-a37e-72385810cc87",
+  "completedStepIds": [
+    "health-check",
+    "create-user"
+  ],
+  "lastSelectedStepId": null,
+  "updatedAt": "2026-02-26T13:24:40.095Z",
+  "lastRequestDraftSummary": {
+    "method": "POST",
+    "url": "http://localhost:3000/demo-api/users",
+    "bodyMode": "none"
+  }
+}

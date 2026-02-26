@@ -1,0 +1,75 @@
+{
+  "taskId": "demo-api-sim",
+  "title": "API Client Simulator",
+  "description": "Use manual mode like Postman, or complete guided steps against the built-in demo API.",
+  "baseUrl": "/demo-api",
+  "steps": [
+    {
+      "id": "health-check",
+      "title": "Health check",
+      "description": "Send GET /health and verify service status.",
+      "request": {
+        "method": "GET",
+        "path": "/health",
+        "headers": {
+          "Accept": "application/json"
+        },
+        "allowEditing": {
+          "method": false,
+          "path": false,
+          "headers": true,
+          "query": true,
+          "body": false,
+          "auth": true
+        }
+      },
+      "checks": [
+        {
+          "id": "status-ok",
+          "type": "status",
+          "equals": 200
+        },
+        {
+          "id": "body-ok",
+          "type": "json-path",
+          "path": "$.ok",
+          "equals": true
+        }
+      ]
+    },
+    {
+      "id": "create-user",
+      "title": "Create user",
+      "description": "Send POST /users with JSON body and confirm a user id is returned.",
+      "request": {
+        "method": "POST",
+        "path": "/users",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "bodyTemplate": "{\n  \"name\": \"Alice\"\n}",
+        "allowEditing": {
+          "method": false,
+          "path": false,
+          "headers": true,
+          "query": true,
+          "body": true,
+          "auth": true
+        }
+      },
+      "checks": [
+        {
+          "id": "status-created",
+          "type": "status",
+          "equals": 201
+        },
+        {
+          "id": "id-exists",
+          "type": "json-path",
+          "path": "$.id",
+          "exists": true
+        }
+      ]
+    }
+  ]
+}

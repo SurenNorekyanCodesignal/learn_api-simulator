@@ -1,0 +1,106 @@
+.bespoke .api-sim-root {
+  height: calc(100vh - 42px);
+  display: flex;
+}
+
+.bespoke #api-sim-root {
+  width: 100%;
+}
+
+.bespoke .api-sim-app {
+  height: 100%;
+  color: #0f172a;
+  background: #f3f6fb;
+}
+
+.bespoke .api-sim-layout {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.bespoke .api-sim-topbar {
+  background: #ffffff;
+  border-bottom: 1px solid var(--Colors-Stroke-Subtle);
+}
+
+.bespoke .api-sim-nav {
+  width: 220px;
+  border-right: 1px solid var(--Colors-Stroke-Subtle);
+}
+
+.bespoke .api-sim-layout-sidebar {
+  width: 320px;
+  border-right: 1px solid var(--Colors-Stroke-Subtle);
+}
+
+.bespoke .api-sim-layout-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.bespoke .api-sim-panel,
+.bespoke .api-sim-app .card {
+  border: 1px solid #d8e0ea;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+}
+
+.bespoke .api-sim-app .body-small,
+.bespoke .api-sim-app .body-default {
+  color: #243244;
+}
+
+.bespoke .api-sim-app .heading-small {
+  color: #0f172a;
+}
+
+.bespoke .api-method-get {
+  color: #166534;
+  background: #ecfdf3;
+  border-color: #9fe6c2;
+}
+
+.bespoke .api-method-post {
+  color: #1d4ed8;
+  background: #eff6ff;
+  border-color: #b9d4ff;
+}
+
+.bespoke .api-method-put {
+  color: #92400e;
+  background: #fffbeb;
+  border-color: #f9d38b;
+}
+
+.bespoke .api-method-delete {
+  color: #991b1b;
+  background: #fef2f2;
+  border-color: #f6b4b4;
+}
+
+.bespoke .api-sim-app pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+@media (max-width: 1024px) {
+  .bespoke .api-sim-app {
+    height: 100%;
+  }
+
+  .bespoke .api-sim-layout {
+    flex-direction: column;
+  }
+
+  .bespoke .api-sim-nav {
+    width: 100%;
+    border-right: 0;
+    border-bottom: 1px solid var(--Colors-Stroke-Subtle);
+  }
+
+  .bespoke .api-sim-layout-sidebar {
+    width: 100%;
+    border-right: 0;
+    border-bottom: 1px solid var(--Colors-Stroke-Subtle);
+  }
+}
