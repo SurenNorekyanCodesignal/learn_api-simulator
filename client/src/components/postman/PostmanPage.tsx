@@ -4,7 +4,7 @@ import { HttpResponseData, RequestDraft, RequestHistoryEntry } from '../../types
 import { ActivitySection } from './ActivitySection';
 import { GuidedStepsSection } from './GuidedStepsSection';
 import { RequestSection } from './RequestSection';
-import { AppSection, SectionNav } from './SectionNav';
+import { AppSection } from './SectionNav';
 
 interface SavedRequest {
   id: string;
@@ -30,9 +30,7 @@ interface PostmanPageProps {
   history: RequestHistoryEntry[];
   savedRequests: SavedRequest[];
   activity: ActivityItem[];
-  navOpen: boolean;
   section: AppSection;
-  onToggleNav: () => void;
   onSelectSection: (section: AppSection) => void;
   onSelectStep: (stepId: string | null) => void;
   onRunStep: () => void;
@@ -59,9 +57,7 @@ export function PostmanPage({
   history,
   savedRequests,
   activity,
-  navOpen,
   section,
-  onToggleNav,
   onSelectSection,
   onSelectStep,
   onRunStep,
@@ -75,35 +71,57 @@ export function PostmanPage({
   onClearHistory,
   onRestoreSaved
 }: PostmanPageProps) {
-  const pageTitle = section === 'request' ? 'Request Workspace' : section === 'guided' ? 'Guided Steps' : 'Activity & Saved';
-
   return (
     <div className="api-sim-app tw-w-full tw-h-full tw-overflow-hidden">
-      <div className="api-sim-topbar tw-flex tw-items-center tw-justify-between tw-gap-2 tw-p-3">
-        <div>
-          <h2 className="heading-small tw-text-[#0f172a]">{config.title}</h2>
-          <p className="body-small tw-text-[#334155]">{pageTitle}</p>
+      <div className="api-sim-topbar">
+        <div className="api-sim-brand">
+          <h2 className="heading-small">API Simulator</h2>
         </div>
-        <div className="tw-flex tw-gap-2">
-          <button type="button" className="button button-text lg:tw-hidden" onClick={onToggleNav}>
-            {navOpen ? 'Close Menu' : 'Menu'}
-          </button>
-          {section !== 'request' && (
-            <button type="button" className="button button-secondary" onClick={() => onSelectSection('request')}>
-              Go to Request
+        <div className="api-sim-topbar-controls">
+          <div className="api-sim-section-switcher" role="tablist" aria-label="Workspace sections">
+            <button
+              type="button"
+              role="tab"
+              aria-selected={section === 'request'}
+              className={`api-section-tab ${section === 'request' ? 'api-section-tab-active' : ''}`}
+              onClick={() => onSelectSection('request')}
+            >
+              Request
             </button>
-          )}
+            <button
+              type="button"
+              role="tab"
+              aria-selected={section === 'guided'}
+              className={`api-section-tab ${section === 'guided' ? 'api-section-tab-active' : ''}`}
+              onClick={() => onSelectSection('guided')}
+            >
+              Guided Steps
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={section === 'activity'}
+              className={`api-section-tab ${section === 'activity' ? 'api-section-tab-active' : ''}`}
+              onClick={() => onSelectSection('activity')}
+            >
+              Activity
+            </button>
+          </div>
+          <button
+            type="button"
+            className="button button-text api-help-button"
+            onClick={() => {
+              const helpButton = document.getElementById('btn-help') as HTMLButtonElement | null;
+              helpButton?.click();
+            }}
+          >
+            Help
+          </button>
         </div>
       </div>
 
       <div className="api-sim-layout">
-        <SectionNav
-          active={section}
-          open={navOpen}
-          onSelect={onSelectSection}
-        />
-
-        <section className="api-sim-layout-main tw-min-h-0 tw-overflow-hidden tw-p-3">
+        <section className="api-sim-layout-main tw-min-h-0 tw-overflow-hidden tw-p-4">
           {section === 'request' && (
             <div className="tw-grid tw-grid-cols-1 tw-gap-3 tw-h-full tw-min-h-0">
               <div className="tw-h-full tw-min-h-0">

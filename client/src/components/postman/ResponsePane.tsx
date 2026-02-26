@@ -24,7 +24,7 @@ export function ResponsePane({ response, error, onCopy }: ResponsePaneProps) {
 
   if (error) {
     return (
-      <div className="box card tw-bg-white tw-p-4 tw-border tw-border-danger">
+      <div className="api-response-pane api-response-pane-error tw-p-4 tw-h-full">
         <h3 className="heading-small tw-text-danger">Request error</h3>
         <p className="body-default tw-mt-2 tw-text-danger">{error}</p>
       </div>
@@ -33,15 +33,15 @@ export function ResponsePane({ response, error, onCopy }: ResponsePaneProps) {
 
   if (!response) {
     return (
-      <div className="box card tw-bg-white tw-p-8 tw-text-center tw-h-full tw-flex tw-items-center tw-justify-center">
+      <div className="api-response-pane api-response-empty tw-p-8 tw-h-full tw-flex tw-items-center tw-justify-center">
         <p className="heading-small">Send a request to see a response.</p>
       </div>
     );
   }
 
   return (
-    <div className="box card tw-bg-white tw-p-3 tw-space-y-3 tw-min-w-0 tw-h-full tw-flex tw-flex-col">
-      <div className="tw-flex tw-flex-wrap tw-items-center tw-justify-between tw-gap-2">
+    <div className="api-response-pane tw-p-4 tw-space-y-3 tw-min-w-0 tw-h-full tw-flex tw-flex-col">
+      <div className="api-response-summary">
         <div className="tw-flex tw-flex-wrap tw-gap-2 tw-items-center">
           <span className={`tag ${statusClass(response.status)}`}>{response.status}</span>
           <span className="body-default">{response.statusText}</span>
@@ -53,25 +53,25 @@ export function ResponsePane({ response, error, onCopy }: ResponsePaneProps) {
         </button>
       </div>
 
-      <div className="tw-flex tw-flex-wrap tw-gap-2" role="tablist" aria-label="Response tabs">
-        <button type="button" className={`button ${tab === 'pretty' ? 'button-primary' : 'button-text'}`} onClick={() => setTab('pretty')}>
+      <div className="api-tab-row api-response-tabs" role="tablist" aria-label="Response tabs">
+        <button type="button" className={`api-tab ${tab === 'pretty' ? 'api-tab-active' : ''}`} onClick={() => setTab('pretty')}>
           Pretty
         </button>
-        <button type="button" className={`button ${tab === 'raw' ? 'button-primary' : 'button-text'}`} onClick={() => setTab('raw')}>
+        <button type="button" className={`api-tab ${tab === 'raw' ? 'api-tab-active' : ''}`} onClick={() => setTab('raw')}>
           Raw
         </button>
-        <button type="button" className={`button ${tab === 'headers' ? 'button-primary' : 'button-text'}`} onClick={() => setTab('headers')}>
+        <button type="button" className={`api-tab ${tab === 'headers' ? 'api-tab-active' : ''}`} onClick={() => setTab('headers')}>
           Headers
         </button>
       </div>
 
-      <div className="tw-flex-1 tw-min-h-[260px] tw-overflow-auto">
+      <div className="api-response-viewer">
         {tab !== 'headers' ? (
-          <pre className="tw-h-full tw-overflow-auto tw-rounded tw-border tw-border-border tw-bg-surface tw-p-3 tw-font-mono tw-text-sm">
+          <pre className="api-response-code">
             {tab === 'pretty' ? response.prettyBody : response.rawBody}
           </pre>
         ) : (
-          <div className="tw-h-full tw-overflow-auto tw-space-y-1 tw-rounded tw-border tw-border-border tw-bg-surface tw-p-3">
+          <div className="api-response-headers">
             {Object.entries(response.headers).map(([key, value]) => (
               <div key={key} className="tw-grid tw-grid-cols-[minmax(140px,220px)_1fr] tw-gap-2 tw-items-start">
                 <span className="body-small tw-font-semibold">{key}</span>

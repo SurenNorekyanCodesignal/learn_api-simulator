@@ -70,7 +70,6 @@ function ClientContainer({
   const [requestError, setRequestError] = useState<string | null>(null);
   const [checkResults, setCheckResults] = useState<CheckEvaluationResult[]>([]);
   const [isSending, setIsSending] = useState(false);
-  const [navOpen, setNavOpen] = useState(false);
   const [section, setSection] = useState<AppSection>('request');
   const [toast, setToast] = useState<string | null>(null);
   const [activity, setActivity] = useState<Array<{ id: string; message: string; timestamp: string }>>([]);
@@ -325,13 +324,8 @@ function ClientContainer({
         history={history}
         savedRequests={savedRequests}
         activity={activity}
-        navOpen={navOpen}
         section={section}
-        onToggleNav={() => setNavOpen((prev) => !prev)}
-        onSelectSection={(nextSection) => {
-          setSection(nextSection);
-          setNavOpen(false);
-        }}
+        onSelectSection={setSection}
         onSelectStep={handleSelectStep}
         onRunStep={handleRunStep}
         onDraftChange={setDraft}

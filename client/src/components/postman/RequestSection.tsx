@@ -48,8 +48,8 @@ export function RequestSection({
   }, [history.length]);
 
   return (
-    <section className="tw-h-full tw-flex tw-flex-col tw-gap-3 tw-min-h-0">
-      <div className="tw-shrink-0">
+    <section className="api-request-workspace">
+      <div className="api-request-composer">
         <RequestWorkbench
           draft={draft}
           allowEditing={allowEditing}
@@ -62,22 +62,25 @@ export function RequestSection({
         />
       </div>
 
-      <div className="tw-flex-1 tw-min-h-0">
+      <div className="api-response-pane-wrap">
         <ResponsePane response={response} error={requestError} onCopy={onCopyResponse} />
       </div>
 
-      <div className="box card tw-bg-white tw-shrink-0 tw-overflow-hidden">
-        <button
-          type="button"
-          className="button button-text tw-w-full tw-justify-between tw-px-3 tw-py-2"
-          onClick={() => setHistoryOpen((prev) => !prev)}
-        >
-          <span>{historyTitle}</span>
-          <span>{historyOpen ? 'Hide' : 'Show'}</span>
-        </button>
+      <div className="box card api-history-drawer tw-shrink-0 tw-overflow-hidden">
+        <div className="api-history-header">
+          <span className="body-default">{historyTitle}</span>
+          <div className="api-history-controls">
+            <button type="button" className="button button-text body-small" onClick={onClearHistory}>
+              Clear
+            </button>
+            <button type="button" className="button button-text body-small" onClick={() => setHistoryOpen((prev) => !prev)}>
+              {historyOpen ? 'Hide' : 'Show'}
+            </button>
+          </div>
+        </div>
         {historyOpen && (
-          <div className="tw-border-t tw-border-border tw-p-3 tw-max-h-64 tw-overflow-auto">
-            <HistoryPanel entries={history} onSelect={onRestoreHistory} onClear={onClearHistory} />
+          <div className="api-history-content">
+            <HistoryPanel entries={history} onSelect={onRestoreHistory} onClear={onClearHistory} showHeader={false} showClear={false} />
           </div>
         )}
       </div>

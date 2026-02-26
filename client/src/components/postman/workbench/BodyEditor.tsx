@@ -22,13 +22,13 @@ export function BodyEditor({
   onPrettify
 }: BodyEditorProps) {
   return (
-    <div className="tw-space-y-3">
-      <div className="tw-flex tw-flex-wrap tw-gap-2">
+    <div className="api-body-editor">
+      <div className="api-tab-row api-body-mode-row">
         {BODY_MODES.map((item) => (
           <button
             key={item}
             type="button"
-            className={`button ${item === mode ? 'button-primary' : 'button-text'}`}
+            className={`api-tab ${item === mode ? 'api-tab-active' : ''}`}
             disabled={locked}
             onClick={() => onChangeMode(item)}
           >
@@ -36,7 +36,7 @@ export function BodyEditor({
           </button>
         ))}
         {mode === 'json' && (
-          <button type="button" className="button button-text" disabled={locked} onClick={onPrettify}>
+          <button type="button" className="button button-text api-body-beautify" disabled={locked} onClick={onPrettify}>
             Beautify
           </button>
         )}
@@ -44,7 +44,7 @@ export function BodyEditor({
 
       {mode !== 'none' && (
         <textarea
-          className="input tw-min-h-56 tw-font-mono"
+          className={`input api-body-textarea ${jsonError ? 'tw-border-danger' : ''}`}
           disabled={locked}
           value={text}
           onChange={(event) => onChangeText(event.target.value)}
