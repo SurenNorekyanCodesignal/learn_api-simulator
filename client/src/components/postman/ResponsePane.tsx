@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { HttpResponseData } from '../../types/http';
+import { CopyIcon } from '../icons';
 
 interface ResponsePaneProps {
   response: HttpResponseData | null;
@@ -24,7 +25,7 @@ export function ResponsePane({ response, error, onCopy }: ResponsePaneProps) {
 
   if (error) {
     return (
-      <div className="api-response-pane api-response-pane-error tw-p-4 tw-h-full">
+      <div className="api-response-pane api-response-pane-error tw-h-full">
         <h3 className="heading-small tw-text-danger">Request error</h3>
         <p className="body-default tw-mt-2 tw-text-danger">{error}</p>
       </div>
@@ -33,14 +34,17 @@ export function ResponsePane({ response, error, onCopy }: ResponsePaneProps) {
 
   if (!response) {
     return (
-      <div className="api-response-pane api-response-empty tw-p-8 tw-h-full tw-flex tw-items-center tw-justify-center">
-        <p className="heading-small">Send a request to see a response.</p>
+      <div className="api-response-pane api-response-empty tw-h-full">
+        <div className="api-response-empty-hint">
+          <p className="heading-small">No Response Yet</p>
+          <p>Send a request to see the response here.</p>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="api-response-pane tw-p-4 tw-space-y-3 tw-min-w-0 tw-h-full tw-flex tw-flex-col">
+    <div className="api-response-pane tw-min-w-0 tw-h-full tw-flex tw-flex-col">
       <div className="api-response-summary">
         <div className="tw-flex tw-flex-wrap tw-gap-2 tw-items-center">
           <span className={`tag ${statusClass(response.status)}`}>{response.status}</span>
@@ -48,8 +52,9 @@ export function ResponsePane({ response, error, onCopy }: ResponsePaneProps) {
           <span className="tag tag-neutral">{Math.round(response.durationMs)} ms</span>
           <span className="tag tag-neutral">{response.sizeBytes} bytes</span>
         </div>
-        <button type="button" className="button button-text" onClick={onCopy}>
-          Copy response
+        <button type="button" className="button button-text api-copy-response-btn" onClick={onCopy}>
+          <CopyIcon size={14} />
+          <span>Copy</span>
         </button>
       </div>
 

@@ -3,12 +3,15 @@ import { RequestHistoryEntry } from '../../types/http';
 interface HistoryPanelProps {
   entries: RequestHistoryEntry[];
   onSelect: (entry: RequestHistoryEntry) => void;
-  onClear: () => void;
-  showHeader?: boolean;
-  showClear?: boolean;
 }
 
-export function HistoryPanel({ entries, onSelect, onClear, showHeader = true, showClear = true }: HistoryPanelProps) {
+function statusTagClass(status: number): string {
+  if (status >= 200 && status < 300) return 'tag-positive';
+  if (status >= 400) return 'tag-danger';
+  return 'tag-warning';
+}
+
+export function HistoryPanel({ entries, onSelect }: HistoryPanelProps) {
   const getPath = (rawUrl: string): string => {
     try {
       const parsed = new URL(rawUrl);
@@ -20,17 +23,6 @@ export function HistoryPanel({ entries, onSelect, onClear, showHeader = true, sh
 
   return (
     <div className="tw-flex tw-flex-col tw-gap-2">
-      {showHeader && (
-        <div className="row-between">
-          <h4 className="heading-small">History</h4>
-          {showClear && (
-            <button type="button" className="button button-text body-small" onClick={onClear}>
-              Clear
-            </button>
-          )}
-        </div>
-      )}
-
       {entries.length === 0 ? (
         <p className="body-small tw-opacity-70">No requests yet.</p>
       ) : (
@@ -42,19 +34,19 @@ export function HistoryPanel({ entries, onSelect, onClear, showHeader = true, sh
               className="api-history-item"
               onClick={() => onSelect(entry)}
             >
-              <div className="tw-flex tw-items-center tw-justify-between tw-gap-2 tw-mb-1">
-                <span className="body-small tw-font-mono tw-text-[#64748b]">
-                  {new Date(entry.timestamp).toLocaleTimeString()}
+              <span className={`api-method-dot api-method-${entry.method.toLowerCase()}`}>{entry.method}</span>
+              <span className="body-default tw-font-medium tw-truncate">{getPath(entry.url)}</span>
+              <span className="body-small tw-font-mono" style={{ color: '#64748b' }}>
+                {new Date(entry.timestamp).toLocaleTimeString()}
+              </span>
+              <span className="api-history-item-meta">
+                <span className={`tag ${entry.status ? statusTagClass(entry.status) : 'tag-neutral'}`}>
+                  {entry.status ?? '–'}
                 </span>
-                <span className="tag tag-neutral">{entry.status ?? '-'}</span>
-              </div>
-              <p className="body-default tw-flex tw-items-center tw-gap-2">
-                <span className={`api-method-dot api-method-${entry.method.toLowerCase()}`}>{entry.method}</span>
-                <span className="tw-font-medium tw-truncate">{getPath(entry.url)}</span>
-              </p>
-              {typeof entry.durationMs === 'number' && (
-                <p className="body-small tw-text-[#64748b]">{entry.durationMs.toFixed(0)} ms</p>
-              )}
+                {typeof entry.durationMs === 'number' && (
+                  <span className="tag tag-neutral">{entry.durationMs.toFixed(0)} ms</span>
+                )}
+              </span>
             </button>
           ))}
         </div>

@@ -36,7 +36,7 @@ export function KeyValueRowsEditor({
       <div className="tw-flex tw-flex-col tw-gap-2">
         {rows.map((row) => (
           <div key={row.id} className="api-kv-row">
-            <label className="input-checkbox tw-self-center">
+            <label className="input-checkbox input-checkbox-xsmall tw-self-center">
               <input
                 type="checkbox"
                 checked={row.enabled}
