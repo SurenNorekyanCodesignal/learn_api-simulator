@@ -14,9 +14,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Populate design system submodule
-        run: git submodule update --init
+        with:
+          submodules: recursive
         
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -32,7 +31,7 @@ jobs:
 
       - name: Install production dependencies only
         run: |
-          npm ci --production
+          npm ci --omit=dev
 
       - name: Create release tarball
         run: |
