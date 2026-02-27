@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { HttpMethod } from '../../../types/http';
+import { ChevronDownIcon } from '../../icons';
 
 interface RequestBarProps {
   method: HttpMethod;
@@ -122,7 +123,7 @@ export function RequestBar({
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((prev) => !prev)}
           >
-            ▾
+            <ChevronDownIcon size={14} />
           </button>
           {menuOpen && (
             <div className="api-send-menu" role="menu" aria-label="Send actions">

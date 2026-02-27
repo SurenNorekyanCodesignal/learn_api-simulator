@@ -42,7 +42,11 @@ export function BodyEditor({
         )}
       </div>
 
-      {mode !== 'none' && (
+      {mode === 'none' ? (
+        <div className="api-body-none-hint">
+          This request does not have a body. Select a body type above to add one.
+        </div>
+      ) : (
         <textarea
           className={`input api-body-textarea ${jsonError ? 'tw-border-danger' : ''}`}
           disabled={locked}
