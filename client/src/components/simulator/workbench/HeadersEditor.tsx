@@ -9,7 +9,7 @@ interface HeadersEditorProps {
 
 export function HeadersEditor({ rows, locked, onChange }: HeadersEditorProps) {
   return (
-    <div className="tw-space-y-3">
+    <div className="tw-space-y-2">
       <p className="body-small api-editor-hint">Headers are sent exactly as enabled in this table.</p>
       <KeyValueRowsEditor rows={rows} locked={locked} onChange={onChange} keyPlaceholder="Header" valuePlaceholder="Value" />
     </div>

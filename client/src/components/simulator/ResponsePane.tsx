@@ -61,20 +61,16 @@ export function ResponsePane({ response, error, onCopy }: ResponsePaneProps) {
   return (
     <div className="api-response-pane tw-min-w-0 tw-h-full tw-flex tw-flex-col">
       <ResponseHeader>
-        <button type="button" className="button button-text api-copy-response-btn" onClick={onCopy}>
-          <CopyIcon size={14} />
-          <span>Copy</span>
-        </button>
-      </ResponseHeader>
-
-      <div className="api-response-summary">
-        <div className="tw-flex tw-flex-wrap tw-gap-2 tw-items-center">
-          <span className={`tag ${statusClass(response.status)}`}>{response.status}</span>
-          <span className="body-default">{response.statusText}</span>
-          <span className="tag tag-neutral">{Math.round(response.durationMs)} ms</span>
-          <span className="tag tag-neutral">{response.sizeBytes} bytes</span>
+        <div className="api-response-header-meta">
+          <span className={`tag ${statusClass(response.status)} api-response-status-tag`}>
+            {response.status} {response.statusText}
+          </span>
+          <button type="button" className="button button-text api-copy-response-btn" onClick={onCopy}>
+            <CopyIcon size={14} />
+            <span>Copy</span>
+          </button>
         </div>
-      </div>
+      </ResponseHeader>
 
       <div className="api-tab-row api-response-tabs" role="tablist" aria-label="Response tabs">
         <button type="button" className={`api-tab ${tab === 'pretty' ? 'api-tab-active' : ''}`} onClick={() => setTab('pretty')}>

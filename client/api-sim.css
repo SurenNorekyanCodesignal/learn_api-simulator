@@ -458,7 +458,7 @@ html, body {
 
 .bespoke .api-request-composer {
   flex: 1 1 auto;     /* fills remaining space above the response pane */
-  min-height: 300px;
+  min-height: 260px;
   min-width: 0;
 }
 
@@ -827,7 +827,7 @@ html, body {
   flex: 1;
   min-height: 0;
   overflow: auto;
-  padding: 14px 0 0;
+  padding: 10px 0 0;
   display: flex;
   flex-direction: column;
 }
@@ -841,7 +841,7 @@ html, body {
 .bespoke .api-kv-editor {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .bespoke .api-kv-head {
@@ -865,16 +865,20 @@ html, body {
 
 .bespoke .api-kv-row .input {
   width: 100%;
+  min-height: 34px;
 }
 
-.bespoke .api-kv-remove {
+.bespoke .api-sim-app .api-kv-row .api-kv-remove {
   color: var(--danger);
-  font-size: 18px;
+  font-size: 16px;
   min-width: 38px;
+  min-height: 34px;
 }
 
-.bespoke .api-add-row-button {
+.bespoke .api-sim-app .api-add-row-button {
   color: #9ac5ff;
+  min-height: 28px;
+  padding: 0 6px !important;
 }
 
 /* Auth editor */
@@ -938,8 +942,8 @@ html, body {
 /* Response pane – user-resizable vertically */
 .bespoke .api-response-pane-wrap {
   flex: 0 0 auto;                          /* fixed size; composer fills remaining space */
-  height: clamp(260px, 36vh, 500px);       /* good default – user can drag to resize */
-  min-height: 200px;
+  height: clamp(360px, 48vh, 680px);       /* good default – user can drag to resize */
+  min-height: 240px;
   min-width: 0;
   overflow: hidden;                        /* required for resize: vertical to work */
   resize: vertical;
@@ -1042,15 +1046,16 @@ html, body {
   border-color: var(--border-strong) !important;
 }
 
-.bespoke .api-response-summary {
-  display: flex;
+/* Status tag lives in the header row to save vertical space */
+.bespoke .api-response-header-meta {
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
   gap: 8px;
-  background: #162033;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 8px 12px;
+  min-width: 0;
+}
+
+.bespoke .api-response-header-meta .api-response-status-tag {
+  white-space: nowrap;
 }
 
 .bespoke .api-response-tabs {
@@ -1455,38 +1460,25 @@ html, body {
   }
 
   .bespoke .api-response-pane-wrap {
-    height: clamp(200px, 32vh, 440px);
-    min-height: 160px;
+    height: clamp(360px, 46vh, 620px);
+    min-height: 320px;
   }
 
   .bespoke .api-kv-head {
     display: none;
   }
 
+  /* Keep everything on one line even in narrow columns:
+     checkbox | key | value | remove */
   .bespoke .api-kv-row {
-    grid-template-columns: auto 1fr;
-    grid-template-areas:
-      "toggle remove"
-      "key key"
-      "value value";
-    gap: 8px;
+    grid-template-columns: 24px minmax(0, 1fr) minmax(0, 1fr) 28px;
+    gap: 6px;
   }
 
-  .bespoke .api-kv-row > label {
-    grid-area: toggle;
-  }
-
-  .bespoke .api-kv-row > input:nth-of-type(1) {
-    grid-area: key;
-  }
-
-  .bespoke .api-kv-row > input:nth-of-type(2) {
-    grid-area: value;
-  }
-
-  .bespoke .api-kv-remove {
-    grid-area: remove;
-    justify-self: end;
+  .bespoke .api-sim-app .api-kv-row .api-kv-remove {
+    min-width: 28px;
+    width: 28px;
+    padding: 0 !important;
   }
 }
 
@@ -1620,11 +1612,7 @@ html, body {
     font-size: 11px;
   }
 
-  .bespoke .api-response-summary {
-    padding: 6px 8px;
-  }
-
-  .bespoke .api-response-summary .tag {
+  .bespoke .api-response-header-meta .tag {
     font-size: 11px;
   }
 }
