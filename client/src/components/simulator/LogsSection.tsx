@@ -1,4 +1,5 @@
 import { Fragment, useCallback, useEffect, useMemo, useState } from 'react';
+import { copyText } from '../../lib/clipboard';
 import { fetchRecentEvents } from '../../services/loggingApi';
 import { EventType, SimulatorEvent } from '../../types/events';
 import { CopyIcon, FilterIcon } from '../icons';
@@ -49,11 +50,7 @@ export function LogsSection() {
   };
 
   const copyEvent = async (event: SimulatorEvent) => {
-    try {
-      await navigator.clipboard.writeText(JSON.stringify(event, null, 2));
-    } catch {
-      // clipboard API may fail in non-secure contexts
-    }
+    await copyText(JSON.stringify(event, null, 2));
   };
 
   const eventKey = (e: SimulatorEvent, i: number) => `${e.timestamp}-${e.eventType}-${i}`;

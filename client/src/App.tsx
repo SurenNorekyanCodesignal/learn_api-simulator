@@ -6,6 +6,7 @@ import { useProgress } from './hooks/useProgress';
 import { useRequestHistory } from './hooks/useRequestHistory';
 import { useSession } from './hooks/useSession';
 import { evaluateChecks, CheckEvaluationResult } from './lib/checks';
+import { copyText } from './lib/clipboard';
 import { buildDraftForStep, createDefaultDraft } from './lib/requestDraft';
 import { composeUrlFromDraft } from './lib/urlDraft';
 import { buildCurl, executeRequest, maskDraftSecrets } from './services/httpClient';
@@ -339,16 +340,16 @@ function ClientContainer({
   }, []);
 
   const handleCopyCurl = useCallback(async () => {
-    await navigator.clipboard.writeText(buildCurl(draft, baseUrl));
-    setToast('Copied cURL');
+    const ok = await copyText(buildCurl(draft, baseUrl));
+    setToast(ok ? 'Copied cURL' : 'Copy failed — clipboard unavailable');
   }, [baseUrl, draft]);
 
   const handleCopyResponse = useCallback(async () => {
     if (!response) {
       return;
     }
-    await navigator.clipboard.writeText(response.rawBody);
-    setToast('Copied response');
+    const ok = await copyText(response.rawBody);
+    setToast(ok ? 'Copied response' : 'Copy failed — clipboard unavailable');
   }, [response]);
 
   return (

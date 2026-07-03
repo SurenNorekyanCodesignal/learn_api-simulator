@@ -8,10 +8,5 @@ interface ParamsEditorProps {
 }
 
 export function ParamsEditor({ rows, locked, onChange }: ParamsEditorProps) {
-  return (
-    <div className="tw-space-y-3">
-      <p className="body-small api-editor-hint">Configure query parameters that will be appended to the URL.</p>
-      <KeyValueRowsEditor rows={rows} locked={locked} onChange={onChange} keyPlaceholder="Param" valuePlaceholder="Value" />
-    </div>
-  );
+  return <KeyValueRowsEditor rows={rows} locked={locked} onChange={onChange} keyPlaceholder="Param" valuePlaceholder="Value" />;
 }

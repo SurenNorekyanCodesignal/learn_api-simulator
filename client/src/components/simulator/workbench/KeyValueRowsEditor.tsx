@@ -33,7 +33,7 @@ export function KeyValueRowsEditor({
         <span>{valuePlaceholder}</span>
         <span className="tw-sr-only">Remove</span>
       </div>
-      <div className="tw-flex tw-flex-col tw-gap-2">
+      <div className="tw-flex tw-flex-col tw-gap-1.5">
         {rows.map((row) => (
           <div key={row.id} className="api-kv-row">
             <label className="input-checkbox input-checkbox-xsmall tw-self-center">
@@ -84,7 +84,7 @@ export function KeyValueRowsEditor({
           </div>
         ))}
       </div>
-      <div className="tw-flex tw-items-center tw-justify-between tw-gap-2 tw-pt-1">
+      <div className="tw-flex tw-items-center tw-justify-between tw-gap-2">
         <button
           type="button"
           className="button button-text api-add-row-button"
